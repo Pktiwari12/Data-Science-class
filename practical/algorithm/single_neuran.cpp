@@ -27,7 +27,7 @@ vector<float>single_neuran_step_fxn(float lambda, float w0, float w1, float w2, 
                     w0 = w0 + lambda*(d-y)*x0;
                     w1 = w1 + lambda*(d-y)*x1;
                     w2 = w2 + lambda*(d-y)*x2;
-                    w_not_changed = false;
+                    w_not_changed = false; // check this flag.
                 }else{
                     w_not_changed = true;
                 }
