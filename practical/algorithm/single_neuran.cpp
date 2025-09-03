@@ -1,7 +1,9 @@
 #include<iostream>
 #include<vector>
+#include<cmath>
 using namespace std;
 float step_fxn(float);
+float sigmoid_fxn(float);
 vector<float>single_neuran_step_fxn(float lambda, float w0, float w1, float w2, float x0, vector<vector<float>>& data){
     // loop for epochs
     int w_not_changed = false;
@@ -14,7 +16,8 @@ vector<float>single_neuran_step_fxn(float lambda, float w0, float w1, float w2, 
                 float x1 = data[i][0];
                 float x2 = data[i][1];
                 float input = b + w1*x1 + w2*x2;
-                float y = step_fxn(input); // prediction
+                // float y = step_fxn(input); // prediction
+                float y = sigmoid_fxn(input);
                 float d = data[i][2];   // target value
                 if( y != data[i][2]){
                     // adaptive law
@@ -29,15 +32,30 @@ vector<float>single_neuran_step_fxn(float lambda, float w0, float w1, float w2, 
         cout << w0 << "\t" << w1 << "\t" << w2 << endl;
     }
     cout << "Our Final weights " << endl << endl;
-    cout << w0 << "\t" << w1 << "\t" << w2;
+    cout << w0 << "\t" << w1 << "\t" << w2 << endl;
+    cout << "("<< w0 << "," << w1 << "," << w2 << ")" << endl;
     return {w0,w1,w2};
 
 }
+// first Activation Function
 float step_fxn(float input){
     if(input > 0.0){
         return 1;
     }
     else{
+        return 0;
+    }
+}
+
+// Second Activation Function
+float sigmoid_fxn(float input){
+    float threshold = 0.5;      // threshold probability
+    float output = 1 / (1 + exp(-input));
+    // cout << output << endl;
+    if(output >= 0.5){ // then o/p is 1
+        return 1;
+    }
+    else {  // then o/p is 0
         return 0;
     }
 }
@@ -48,8 +66,11 @@ int main(){
         {0.5, 0.2, 1},
         {0.7, 0.9, 0}
     };
-    // for(int i = 1 ; i< 15 ; i++){
-        single_neuran_step_fxn(1,0,0,0,1,data);
+    // for(int i = 0 ; i<4 ; i++){
+    //     cout << "w =  "<< i << endl << endl;
+        single_neuran_step_fxn(1,3,3,3,0,data);
+        // cout << endl << endl << endl << endl;
     // }
+    // cout << sigmoid_fxn(-0.1) << endl;
 
 }
