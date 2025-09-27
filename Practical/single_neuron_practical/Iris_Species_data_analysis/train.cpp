@@ -34,15 +34,5 @@ int main(){
         ss.clear();
     }
     file.close();
-    // for(int i = 0 ; i < data.size() ; i++){
-    //     for(int j = 0 ; j < data[i].size() ; j++){
-    //         cout << data[i][j] << "\t";
-    //     }
-    //     cout << endl;
-    // }
-    // cout << data.size() << endl << data[99].size() ;
-    
-
-    // call single neuron
-    single_neuran_step_fxn(1,3,3,3,1,data);
+    single_neuran_step_fxn(0.1,3,3,3,1,data);
 }

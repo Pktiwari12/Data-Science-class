@@ -16,8 +16,8 @@ vector<float>single_neuran_step_fxn(float lambda, float w0, float w1, float w2, 
                 float x1 = data[i][0];
                 float x2 = data[i][1];
                 float input = b + w1*x1 + w2*x2;
-                float y = step_fxn(input); // prediction
-                // float y = sigmoid_fxn(input);
+                // float y = step_fxn(input); // prediction
+                float y = sigmoid_fxn(input);
                 float d = data[i][2];   // target value
                 if( y != data[i][2]){
                     // adaptive law
@@ -34,7 +34,6 @@ vector<float>single_neuran_step_fxn(float lambda, float w0, float w1, float w2, 
     cout << "Our Final weights " << endl << endl;
     cout << w0 << "\t" << w1 << "\t" << w2 << endl;
     cout << "("<< w0 << "," << w1 << "," << w2 << ")" << endl;
-
     return {w0,w1,w2};
 
 }
@@ -72,6 +71,6 @@ float sigmoid_fxn(float input){
 //         single_neuran_step_fxn(0.25,3,3,3,i,data);
 //         cout << endl << endl << endl << endl;
 //     }
-    // cout << sigmoid_fxn(-0.1) << endl;
+//     cout << sigmoid_fxn(-0.1) << endl;
 
 // }
